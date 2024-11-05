@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Text</title>
-  <script type="module" crossorigin src="/assets/index-stnoSCVh.js"></script>
+  <script type="module" crossorigin src="/assets/index-CltAXVp5.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-gLRghIM6.css">
 </head>
 
@@ -188,7 +188,129 @@
     </div>
 
   <canvas class="webgl"></canvas>
-  <script src="myscript.js" async></script>
+  <script>
+    const btn1 = document.getElementById('btn1');
+const btn2 = document.getElementById('btn2');
+const btn3 = document.getElementById('btn3');
+
+const layer1 = document.getElementById('layer1');
+const layer2 = document.getElementById('layer2');
+
+function toggleActive() {
+  // 현재 active인 버튼이 클릭되었으면, active를 제거
+  if (button.classList.contains('btn-active')) {
+    button.classList.remove('btn-active');
+    button.classList.add('btn-inactive');
+  } else {
+    // 클릭된 버튼을 active 상태로 변경
+    button.classList.add('btn-active');
+    button.classList.remove('btn-inactive');
+  }
+}
+
+
+// Layer 1 버튼 클릭
+btn1.addEventListener('click', () => {
+  //btn이 active일 때 hidden
+  if (btn1.classList.contains('btn-active')) {
+    btn1.classList.remove('btn-active');
+    btn2.classList.add('btn-inactive');
+    btn1.classList.add('btn-inactive');
+    btn2.classList.remove('btn-active');
+    layer1.classList.remove('visible');
+    layer2.classList.add('hidden');
+    layer1.classList.add('hidden');
+    layer2.classList.remove('visible');
+  }
+  //normal works well
+  else {
+    btn1.classList.remove('btn-inactive');
+    btn2.classList.add('btn-inactive');
+    btn1.classList.add('btn-active');
+    btn2.classList.remove('btn-active');
+    layer1.classList.remove('hidden');
+    layer2.classList.add('hidden');
+    layer1.classList.add('visible');
+    layer2.classList.remove('visible');
+  }
+});
+
+// Layer 2 버튼 클릭
+btn2.addEventListener('click', () => {
+  if (btn2.classList.contains('btn-active')) {
+    btn2.classList.remove('btn-active');
+    btn1.classList.add('btn-inactive');
+    btn2.classList.add('btn-inactive');
+    btn1.classList.remove('btn-active');
+    layer2.classList.remove('visible');
+    layer1.classList.add('hidden');
+    layer2.classList.add('hidden');
+    layer1.classList.remove('visible');
+  }
+  else {
+    layer2.classList.remove('hidden');
+    layer1.classList.add('hidden');
+    layer2.classList.add('visible');
+    layer1.classList.remove('visible');
+
+    btn2.classList.remove('btn-inactive');
+    btn1.classList.add('btn-inactive');
+    btn2.classList.add('btn-active');
+    btn1.classList.remove('btn-active');
+  }
+});
+
+// layer 3 new tab link 
+btn3.addEventListener('click', () => {
+  window.open('https://www.behance.net/gallery/205927825/Wind-and-Waves-Carved-Sound', '_blank');
+});
+
+const emotionbtn1 = document.getElementById('joy');
+const emotionbtn2 = document.getElementById('mad');
+const emotionbtn3 = document.getElementById('surprise');
+const emotionbtn4 = document.getElementById('love');
+const emotionbtn5 = document.getElementById('sadness');
+
+const joy = document.getElementById('emotion1');
+const mad = document.getElementById('emotion2');
+const surprise = document.getElementById('emotion3');
+const love = document.getElementById('emotion4');
+const sadness = document.getElementById('emotion5');
+
+const emotions = {
+  joy: { button: emotionbtn1, element: joy },
+  mad: { button: emotionbtn2, element: mad },
+  surprise: { button: emotionbtn3, element: surprise },
+  love: { button: emotionbtn4, element: love },
+  sadness: { button: emotionbtn5, element: sadness },
+};
+
+Object.values(emotions).forEach(({ button, element }) => {
+  button.addEventListener('click', () => {
+    // Show the selected emotion
+    element.classList.add('emotion-visible');
+    element.classList.remove('emotion-hidden');
+    button.classList.add('btn-active');
+    button.classList.remove('btn-inactive');
+
+    // Hide all other emotions
+    Object.values(emotions).forEach(({ element: otherElement }) => {
+      if (otherElement !== element) {
+        otherElement.classList.remove('emotion-visible');
+        otherElement.classList.add('emotion-hidden');
+      }
+    });
+
+    // Hide all other emotions
+    Object.values(emotions).forEach(({ button: otherButton }) => {
+      if (otherButton !== button) {
+        otherButton.classList.remove('btn-active');
+        otherButton.classList.add('btn-inactive');
+      }
+    });
+  });
+});
+  </script>
 </body>
 
 </html>
